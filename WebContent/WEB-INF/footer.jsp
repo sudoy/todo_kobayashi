@@ -1,8 +1,8 @@
 <%@ page pageEncoding="UTF-8"%>
 
 
-<link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="css/index.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+	<script	src="js/bootstrap.min.js"></script>
 
 </body>
 </html>
