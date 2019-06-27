@@ -1,6 +1,6 @@
 
 create table todo(
- number int,
+ number int primary key,
  title varchar(50),
  detail varchar(100),
  priority varchar(3),
