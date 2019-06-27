@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 
+
 <jsp:include page="header.jsp"/>
 
 <nav class="navbar navbar-default">
