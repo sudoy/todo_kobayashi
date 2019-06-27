@@ -49,8 +49,6 @@
 
 	<a href="entry.html" class="btn btn-info">追 加</a>
 
-</div>
-<!-- container-->
 
 
 <jsp:include page="footer.jsp" />
