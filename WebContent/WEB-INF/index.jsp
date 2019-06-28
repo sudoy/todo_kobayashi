@@ -15,13 +15,13 @@
 		<th>期限</th>
 	</tr>
 
-	<c:forEach items="${number}" var="n" varStatus="s">
+	<c:forEach items="${form}" var="f" varStatus="s">
 
 		<tr class="">
-			<td>${number[s.index]}</td>
-			<td class="test"><a href="update.html">${title[s.index]}</a></td>
-			<td>${priority[s.index]}</td>
-			<td>${deadline[s.index]}</td>
+			<td>${f.number}</td>
+			<td class="test"><a href="update.html">${f.title}</a></td>
+			<td>${f.priority}</td>
+			<td>${f.deadline}</td>
 		</tr>
 	</c:forEach>
 
