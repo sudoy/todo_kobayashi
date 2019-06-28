@@ -31,11 +31,12 @@ public class IndexServlet extends HttpServlet {
 
 			//SQL
 			sql = "select number, title, detail, priority, deadline "
-					+ "from todo"
+					+ "from todo "
 					+ "order by number";
 
 			//SELECT命令の準備
 			ps = con.prepareStatement(sql);
+
 
 			//SELECT命令の実行
 			rs = ps.executeQuery(sql);
@@ -55,6 +56,7 @@ public class IndexServlet extends HttpServlet {
 				String priority = rs.getString("priority");
 				String deadline = rs.getString("deadline");
 
+
 				numberlist.add(number);
 				titlelist.add(title);
 				detaillist.add(detail);
@@ -68,6 +70,7 @@ public class IndexServlet extends HttpServlet {
 			req.setAttribute("detail",detaillist);
 			req.setAttribute("priority",prioritylist);
 			req.setAttribute("deadline",deadlinelist);
+
 
 		} catch (Exception e) {
 			e.printStackTrace();

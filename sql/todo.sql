@@ -8,14 +8,14 @@ create table todo(
 );
 
 insert into todo(number, title, detail, priority, deadline)
-values(1,'テストテスト','SQLの確認テストの採点と報告書を作成する。','★★★','2015-06-20');
+values(1,'テスト1','SQLの確認テストの採点と報告書を作成する。','★★★','2015-06-20');
 
 insert into todo(number, title, detail, priority, deadline)
-values(2,'テストテスト','SQLの確認テストの採点と報告書を作成する。','★','2015-06-20');
+values(2,'テスト2','SQLの確認テストの採点と報告書を作成する。','★','2015-06-22');
 
 insert into todo(number, title, detail, priority, deadline)
-values(3,'テストテスト','SQLの確認テストの採点と報告書を作成する。','★★★','2015-06-20');
+values(3,'テスト3','SQLの確認テストの採点と報告書を作成する。','★★★','2015-06-20');
 
 insert into todo(number, title, detail, priority, deadline)
-values(4,'テストテスト','SQLの確認テストの採点と報告書を作成する。', '★★★',null);
+values(4,'テスト4','SQLの確認テストの採点と報告書を作成する。', '★★',null);
 
