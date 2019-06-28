@@ -6,8 +6,6 @@
 <jsp:include page="body.jsp" />
 
 
-
-
 	<table class="table">
 
 		<tr>

@@ -11,3 +11,8 @@ td.test{
 	color: #6aaedf;
 
 }
+
+div.alert.alert-danger.alert-dismissible{
+	background-color: #fff5f5;
+	color: #e60400;
+}

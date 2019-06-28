@@ -7,9 +7,6 @@ body{
 	background-color: #f8f8f8;
 }
 
-.radio.col-sm-10 {
-   
-}
 
 a.btn.btn-danger{
 	margin: -59px 0 0 0;
@@ -17,4 +14,8 @@ a.btn.btn-danger{
 
 h4{
 	font-weight: bold;
+}
+div.alert.alert-danger.alert-dismissible{
+	background-color: #fff5f5;
+	color: #e60400;
 }
