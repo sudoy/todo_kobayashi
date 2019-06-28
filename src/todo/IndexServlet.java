@@ -30,7 +30,7 @@ public class IndexServlet extends HttpServlet {
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "select number, title, detail, priority, deadline "
+			sql = "select number, title, priority, deadline "
 					+ "from todo "
 					+ "order by number";
 
@@ -43,7 +43,6 @@ public class IndexServlet extends HttpServlet {
 
 			List<String> numberlist = new ArrayList<>();
 			List<String> titlelist = new ArrayList<>();
-			List<String> detaillist = new ArrayList<>();
 			List<String> prioritylist = new ArrayList<>();
 			List<String> deadlinelist = new ArrayList<>();
 
@@ -52,14 +51,12 @@ public class IndexServlet extends HttpServlet {
 
 				String number = rs.getString("number");
 				String title = rs.getString("title");
-				String detail = rs.getString("detail");
 				String priority = rs.getString("priority");
 				String deadline = rs.getString("deadline");
 
 
 				numberlist.add(number);
 				titlelist.add(title);
-				detaillist.add(detail);
 				prioritylist.add(priority);
 				deadlinelist.add(deadline);
 
@@ -67,7 +64,6 @@ public class IndexServlet extends HttpServlet {
 
 			req.setAttribute("number",numberlist);
 			req.setAttribute("title",titlelist);
-			req.setAttribute("detail",detaillist);
 			req.setAttribute("priority",prioritylist);
 			req.setAttribute("deadline",deadlinelist);
 
