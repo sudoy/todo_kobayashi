@@ -28,15 +28,13 @@ public class EntryServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 
-		String number = req.getParameter("number");
 		String title = req.getParameter("title");
 		String detail = req.getParameter("detail");
 		String priority = req.getParameter("priority");
 		String deadline = req.getParameter("deadline");
 
-		EntryForm form = new EntryForm(number, title, detail, priority, deadline);
+		EntryForm form = new EntryForm(title, detail, priority, deadline);
 
-		System.out.println(number);
 
 		//DBにインサート
 		Service service = new Service();

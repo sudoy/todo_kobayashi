@@ -2,29 +2,20 @@ package todo.forms;
 
 public class EntryForm {
 
-	private String number;
 	private String title;
 	private String detail;
 	private String priority;
 	private String deadline;
 
-	public EntryForm(String number, String title, String detail, String priority, String deadline) {
+	public EntryForm(String title, String detail, String priority, String deadline) {
 
 		super();
-		this.number = number;
+
 		this.title = title;
 		this.detail = detail;
 		this.priority = priority;
 		this.deadline = deadline;
 
-	}
-
-	public String getNumber() {
-		return number;
-	}
-
-	public void setNumber(String number) {
-		this.number = number;
 	}
 
 	public String getTitle() {

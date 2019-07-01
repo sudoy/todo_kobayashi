@@ -79,17 +79,16 @@ public class Service {
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "insert into todo (number, detail, title, priority, deadline) values (?,?,?,?,?)";
+			sql = "insert into todo (number, detail, title, priority, deadline) values (?,?,?,?)";
 
 			//INSERT命令の準備
 			ps = con.prepareStatement(sql);
 
 			//INERT命令にポストデータの内容をセット
-			ps.setString(1, form.getNumber());
-			ps.setString(2, form.getDetail());
-			ps.setString(3, form.getTitle());
-			ps.setString(4, form.getPriority());
-			ps.setString(5, form.getDeadline());
+			ps.setString(1, form.getDetail());
+			ps.setString(2, form.getTitle());
+			ps.setString(3, form.getPriority());
+			ps.setString(4, form.getDeadline());
 
 			System.out.println(ps);
 
