@@ -79,7 +79,7 @@ public class Service {
 			con = DBUtils.getConnection();
 
 			//SQL
-			sql = "insert into todo (number, detail, title, priority, deadline) values (?,?,?,?)";
+			sql = "insert into todo (detail, title, priority, deadline) values (?,?,?,?)";
 
 			//INSERT命令の準備
 			ps = con.prepareStatement(sql);
