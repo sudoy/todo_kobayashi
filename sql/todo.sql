@@ -1,10 +1,10 @@
 
 create table todo(
- number int primary key,
- title varchar(50),
+ number int primary key auto_increment,
+ title varchar(100),
  detail varchar(100),
  priority varchar(3),
- deadline date 
+ deadline date
 );
 
 insert into todo(number, title, detail, priority, deadline)

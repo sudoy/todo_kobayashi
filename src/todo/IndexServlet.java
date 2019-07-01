@@ -16,6 +16,8 @@ import todo.services.Service;
 public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html; charset=UTF-8");
+
 
 		Service service = new Service();
 		List <IndexForm> form = service.select();
@@ -24,13 +26,22 @@ public class IndexServlet extends HttpServlet {
 		req.setAttribute("form", form);
 
 
-
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
 	}
 
-}
 
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		resp.setContentType("text/html; charset=UTF-8");
+
+
+
+
+		this.getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+
+	}
+
+}
 
 /*		Connection con = null;
 PreparedStatement ps = null;

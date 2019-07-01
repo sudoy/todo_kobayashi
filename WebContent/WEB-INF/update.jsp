@@ -8,7 +8,7 @@
 	<h4>更新フォーム</h4>
 	<hr>
 
-	<form class="form-horizontal">
+	<form class="form-horizontal" action="update.html" method="post">
 
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">題名</label>
@@ -49,8 +49,8 @@
 
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<a href="index.html" class="btn btn-default">キャンセル</a> <a
-					href="index.html" class="btn btn-info">更 新</a>
+				<a href="index.html" class="btn btn-default">キャンセル</a>
+			    <input class="btn btn-info" type="submit" name="button" value="更新">
 
 				<div class="col-sm-offset-11 col-sm-5">
 					<a href="index.html" class="btn btn-danger">削 除</a>
