@@ -79,6 +79,9 @@ public class EntryServlet extends HttpServlet {
 		if(priority.length() > 3 || priority.length() == 0) {
 			return error = "";
 		}
+		if(!priority.contains("★") || (!priority.contains("★★")) || (!priority.contains("★★★"))){
+			return error = "";
+		}
 		if(deadline.equals("")) {
 			error += "1";
 		}else if(m.find() == false) {
