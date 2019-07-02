@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <jsp:include page="header.jsp" />
@@ -13,24 +14,31 @@
 	<div class="form-group">
 		<label  class="col-sm-2 control-label">題名</label>
 		<div class="col-sm-10">
-			<input type="text" class="form-control" name="title" placeholder="題名">
+			<input type="text" class="form-control" name="title" value="${form.title}"  placeholder="題名">
 		</div>
 	</div>
 
 	<div class="form-group">
 			<label class="col-sm-2 control-label">詳細</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="2" name="detail" placeholder="詳細"></textarea>
+				<textarea class="form-control" rows="2" name="detail" placeholder="詳細">${form.detail}</textarea>
 			</div>
-		</div>
+	</div>
 
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">重要度</label>
 			<div class=" radio col-sm-10">
 				<div class="radio">
-					<label><input type="radio" name="priority" value="★★★" checked>★★★</label><br>
-					<label><input type="radio" name="priority" value="★k">★★</label><br>
-					<label><input type="radio" name="priority" value="★">★</label><br>
+					<label><input type="radio" name="priority" value="★★★"
+					<c:if test="${form.priority.equals('★★★')}">checked</c:if>
+					checked>★★★</label><br>
+
+					<label><input type="radio" name="priority" value="★★"
+					<c:if test="${form.priority.equals('★★')}">checked</c:if>
+					>★★</label><br>
+					<label><input type="radio" name="priority" value="★"
+					<c:if test="${form.priority.equals('★')}">checked</c:if>
+					>★</label><br>
 				</div>
 				<!--radio-->
 			</div>
@@ -40,7 +48,7 @@
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">期限</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="deadline" placeholder="期限">
+				<input type="text" class="form-control" name="deadline" value="${form.deadline}" placeholder="期限">
 			</div>
 		</div>
 

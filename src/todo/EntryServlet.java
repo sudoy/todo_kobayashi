@@ -35,11 +35,14 @@ public class EntryServlet extends HttpServlet {
 
 		EntryForm form = new EntryForm(title, detail, priority, deadline);
 
+
 		//バリデーションチェック
 		String error = validate(form);
 
 		//エラー時はentry.jspの再表示
-		if (error.equals("")) {
+		if (!error.equals("")) {
+			req.setAttribute("error", error);
+			req.setAttribute("form",form );
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 			return;
 		}
@@ -55,7 +58,7 @@ public class EntryServlet extends HttpServlet {
 
 	private String validate(EntryForm form) {
 
-		String error = "1";
+		String error = "";
 
 		String title = form.getTitle();
 		String priority = form.getPriority();
@@ -64,27 +67,29 @@ public class EntryServlet extends HttpServlet {
 		Pattern p = Pattern.compile("^[0-9]{4}/[0-9]{2}/[0-9]{2}$");
 		Matcher m = p.matcher(deadline);
 
-		//題名未入力
+		//題名未入力チェック
 		if (title.equals("")) {
-			return error = "";
+			error += "題名は必須入力です。";
 		}
-		//題名の文字数制限(100字)
+		//題名の文字数チェック(100字)
 		if (title.length() > 100) {
-			return error = "";
+			 error += "題名は100文字以内にして下さい。";
 		}
 		//重要度チェック
 		if (priority.length() > 3 || priority.length() == 0) {
-			return error = "";
+			 error += "重要度は★～★★★までです。";
 		}
 		if (!priority.equals("★") && (!priority.equals("★★")) && (!priority.equals("★★★"))) {
-			return error = "";
+			 error += "重要度は★～★★★で表示されます。";
 		}
 
-		//期限書式チェック、未入力時はそのまま登録
+		//期限書式チェック
+		if (m.find() == false) {
+			error += "期限は「YYYY/MM/DD」形式で入力してください。";
+		}
+		//未入力時はそのまま登録
 		if (deadline.equals("")) {
-			error = "1";
-		} else if (m.find() == false) {
-			error = "";
+			return error += "";
 		}
 		return error;
 

@@ -1,4 +1,5 @@
 <%@ page pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 	<nav class="navbar navbar-default">
 		<div class="container">
@@ -30,11 +31,11 @@
 			<span aria-hidden="true">&times;</span>
 		</button>
 		<strong>エラーが発生しました！</strong>
-		<ul>
-			<li>題名は必須入力です。</li>
-			<li>題名は100文字以内にして下さい。</li>
-			<li>期限は「YYYY/MM/DD」形式で入力してください。</li>
 
-		</ul>
+			<p>${error}</p>
+<!-- 		<p>題名は100文字以内にして下さい。</p>
+			<p>期限は「YYYY/MM/DD」形式で入力してください。</p>
+-->
+
 	</div>
 	<!--Alert2-->
