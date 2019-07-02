@@ -84,20 +84,26 @@ public class Service {
 			//INSERT命令の準備
 			ps = con.prepareStatement(sql);
 
+			String deadline = form.getDeadline();
+
+			if(deadline.equals("")) {
+				deadline = null;
+			}
+
 			//INERT命令にポストデータの内容をセット
 			ps.setString(1, form.getDetail());
 			ps.setString(2, form.getTitle());
 			ps.setString(3, form.getPriority());
-			ps.setString(4, form.getDeadline());
+			ps.setString(4, deadline);
+
 
 			System.out.println(ps);
 
 			//INSERT命令の実行
 			ps.executeUpdate();
 
-//		System.out.println(form.getNumber());
+		System.out.println(form.getDeadline());
 
-		System.out.println(ps);
 
 		} catch (Exception e) {
 			e.printStackTrace();

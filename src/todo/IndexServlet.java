@@ -16,7 +16,7 @@ import todo.services.Service;
 public class IndexServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=UTF-8");
+		req.setCharacterEncoding("UTF-8");
 
 
 		Service service = new Service();
@@ -32,7 +32,7 @@ public class IndexServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("text/html; charset=UTF-8");
+		req.setCharacterEncoding("UTF-8");
 
 
 
