@@ -73,7 +73,7 @@ public class EntryServlet extends HttpServlet {
 			return error = "";
 		}
 		if(title.length() > 100) {
-			error = "";
+			return error = "";
 		}
 		if(deadline.equals("")) {
 			error += "1";
