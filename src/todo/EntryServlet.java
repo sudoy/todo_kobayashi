@@ -58,7 +58,7 @@ public class EntryServlet extends HttpServlet {
 
 	private String validate(EntryForm form) {
 
-		String error = "1";
+		String error = "";
 
 		String title = form.getTitle();
 		String priority = form.getPriority();
@@ -79,8 +79,12 @@ public class EntryServlet extends HttpServlet {
 		if(priority.length() > 3 || priority.length() == 0) {
 			return error = "";
 		}
-		if(!priority.contains("★") || (!priority.contains("★★")) || (!priority.contains("★★★"))){
+		if(!priority.contains("★") && (!priority.contains("★★")) && (!priority.contains("★★★"))){
 			return error = "";
+		}
+		if(!priority.matches("[★]")){
+			return error = "";
+
 		}
 		if(deadline.equals("")) {
 			error += "1";
@@ -89,8 +93,6 @@ public class EntryServlet extends HttpServlet {
 
 		}
 		return error;
-
-
 
 
 	}

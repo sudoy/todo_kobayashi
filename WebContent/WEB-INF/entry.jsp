@@ -29,7 +29,7 @@
 			<div class=" radio col-sm-10">
 				<div class="radio">
 					<label><input type="radio" name="priority" value="★★★" checked>★★★</label><br>
-					<label><input type="radio" name="priority" value="★★">★★</label><br>
+					<label><input type="radio" name="priority" value="★k">★★</label><br>
 					<label><input type="radio" name="priority" value="★">★</label><br>
 				</div>
 				<!--radio-->
