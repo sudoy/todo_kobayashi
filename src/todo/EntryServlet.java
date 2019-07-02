@@ -61,6 +61,7 @@ public class EntryServlet extends HttpServlet {
 		String error = "1";
 
 		String title = form.getTitle();
+		String priority = form.getPriority();
 		String deadline = form.getDeadline();
 
 
@@ -73,6 +74,9 @@ public class EntryServlet extends HttpServlet {
 			return error = "";
 		}
 		if(title.length() > 100) {
+			return error = "";
+		}
+		if(priority.length() > 3 || priority.length() == 0) {
 			return error = "";
 		}
 		if(deadline.equals("")) {
