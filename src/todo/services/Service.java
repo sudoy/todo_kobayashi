@@ -97,12 +97,8 @@ public class Service {
 			ps.setString(4, deadline);
 
 
-			System.out.println(ps);
-
 			//INSERT命令の実行
 			ps.executeUpdate();
-
-		System.out.println(form.getDeadline());
 
 
 		} catch (Exception e) {

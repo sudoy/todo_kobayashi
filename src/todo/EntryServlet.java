@@ -70,7 +70,7 @@ public class EntryServlet extends HttpServlet {
 
 
 		if(title.equals("")) {
-			error = "";
+			return error = "";
 		}
 		if(title.length() > 100) {
 			error = "";
