@@ -20,10 +20,8 @@ public class EntryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 
-
 		this.getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
-
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,24 +33,23 @@ public class EntryServlet extends HttpServlet {
 		String priority = req.getParameter("priority");
 		String deadline = req.getParameter("deadline");
 
-
 		EntryForm form = new EntryForm(title, detail, priority, deadline);
 
 		//バリデーションチェック
 		String error = validate(form);
 
 		//エラー時はentry.jspの再表示
-		if(error == "") {
+		if (error.equals("")) {
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 			return;
 		}
 
 		//DBにインサート
-			Service service = new Service();
-			service.insert(form);
+		Service service = new Service();
+		service.insert(form);
 
 		//処理完了後index.htmlへ遷移
-			resp.sendRedirect("index.html");
+		resp.sendRedirect("index.html");
 
 	}
 
@@ -64,28 +61,29 @@ public class EntryServlet extends HttpServlet {
 		String priority = form.getPriority();
 		String deadline = form.getDeadline();
 
+		Pattern p = Pattern.compile("^[0-9]{4}/[0-9]{2}/[0-9]{2}$");
+		Matcher m = p.matcher(deadline);
 
-
-		 Pattern p = Pattern.compile("^[0-9]{4}/[0-9]{2}/[0-9]{2}$");
-	     Matcher m = p.matcher(deadline);
-
-
-		if(title.equals("")) {
+		//題名未入力
+		if (title.equals("")) {
 			return error = "";
 		}
-		if(title.length() > 100) {
+		//題名の文字数制限(100字)
+		if (title.length() > 100) {
 			return error = "";
 		}
-		if(priority.length() > 3 || priority.length() == 0) {
+		//重要度チェック
+		if (priority.length() > 3 || priority.length() == 0) {
 			return error = "";
 		}
-		if(!priority.equals("★") && (!priority.equals("★★")) && (!priority.equals("★★★"))){
+		if (!priority.equals("★") && (!priority.equals("★★")) && (!priority.equals("★★★"))) {
 			return error = "";
 		}
 
-		if(deadline.equals("")) {
+		//期限書式チェック、未入力時はそのまま登録
+		if (deadline.equals("")) {
 			error = "1";
-		}else if(m.find() == false) {
+		} else if (m.find() == false) {
 			error = "";
 		}
 		return error;
