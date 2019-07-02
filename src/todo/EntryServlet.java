@@ -20,6 +20,9 @@ public class EntryServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 
+
+
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
 
@@ -34,7 +37,6 @@ public class EntryServlet extends HttpServlet {
 		String deadline = req.getParameter("deadline");
 
 		EntryForm form = new EntryForm(title, detail, priority, deadline);
-
 
 		//バリデーションチェック
 		String error = validate(form);

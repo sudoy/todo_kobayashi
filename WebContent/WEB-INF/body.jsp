@@ -25,12 +25,17 @@
 	</div>
 	<!--Alert1-->
 
+	<c:if test="${error != null && !error.equals('')}">
+
+
 	<div class="alert alert-danger alert-dismissible" role="alert">
 		<button type="button" class="close" data-dismiss="alert"
 			aria-label="Close">
 			<span aria-hidden="true">&times;</span>
 		</button>
+
 		<strong>エラーが発生しました！</strong>
+
 
 			<p>${error}</p>
 <!-- 		<p>題名は100文字以内にして下さい。</p>
@@ -38,4 +43,8 @@
 -->
 
 	</div>
+	</c:if>
+
+
+
 	<!--Alert2-->
