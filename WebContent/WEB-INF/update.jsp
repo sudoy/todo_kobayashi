@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <jsp:include page="header.jsp" />
@@ -29,10 +30,15 @@
 			<label for="inputEmail3" class="col-sm-2 control-label">重要度</label>
 			<div class="radio col-sm-10">
 				<div class="radio">
-					<label><input type="radio" name="priority" value="${form.priority}"
-						checked>★★★</label><br> <label><input type="radio"
-						name="priority" value="${form.priority}">★★</label><br> <label><input
-						type="radio" name="priority" value="${form.priority}">★</label><br>
+					<label><input type="radio" name="priority" value="★★★"
+					<c:if test="${form.priority.equals('★★★')}">checked</c:if>
+						checked>★★★</label><br>
+						<label><input type="radio" name="priority" value="★★"
+						<c:if test="${form.priority.equals('★★')}">checked</c:if>
+						>★★</label><br>
+						<label><input type="radio" name="priority" value="★"
+						<c:if test="${form.priority.equals('★')}">checked</c:if>
+						>★</label><br>
 				</div>
 				<!--radio-->
 			</div>
