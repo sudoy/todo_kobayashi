@@ -36,12 +36,11 @@
 
 		<strong>エラーが発生しました！</strong>
 
-		<c:forEach var="e" items="${error}" varStatus="s" >
 		<ul>
+		<c:forEach var="e" items="${error}" varStatus="s" >
 			<li>${e}</li>
-
-		</ul>
 		</c:forEach>
+		</ul>
 
 
 
