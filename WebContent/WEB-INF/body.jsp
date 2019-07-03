@@ -36,8 +36,15 @@
 
 		<strong>エラーが発生しました！</strong>
 
+		<c:forEach var="e" items="${error}" varStatus="s" >
+		<ul>
+			<li>${e}</li>
 
-			<p>${error}</p>
+		</ul>
+		</c:forEach>
+
+
+
 <!-- 		<p>題名は100文字以内にして下さい。</p>
 			<p>期限は「YYYY/MM/DD」形式で入力してください。</p>
 -->

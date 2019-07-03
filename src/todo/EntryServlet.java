@@ -1,6 +1,8 @@
 package todo;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,6 +25,7 @@ public class EntryServlet extends HttpServlet {
 
 
 
+
 		this.getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
 	}
 
@@ -39,10 +42,11 @@ public class EntryServlet extends HttpServlet {
 		EntryForm form = new EntryForm(title, detail, priority, deadline);
 
 		//バリデーションチェック
-		String error = validate(form);
+		List<String> error = validate(form);
 
 		//エラー時はentry.jspの再表示
-		if (!error.equals("")) {
+		if (error.size() != 0 ) {
+
 			req.setAttribute("error", error);
 			req.setAttribute("form",form );
 			getServletContext().getRequestDispatcher("/WEB-INF/entry.jsp").forward(req, resp);
@@ -58,9 +62,10 @@ public class EntryServlet extends HttpServlet {
 
 	}
 
-	private String validate(EntryForm form) {
+	private List<String> validate(EntryForm form) {
 
-		String error = "";
+		List<String> e = new ArrayList<>();
+
 
 		String title = form.getTitle();
 		String priority = form.getPriority();
@@ -71,29 +76,34 @@ public class EntryServlet extends HttpServlet {
 
 		//題名未入力チェック
 		if (title.equals("")) {
-			error += "題名は必須入力です。";
+//			error += "題名は必須入力です。";
+			e.add("題名は必須入力です。");
 		}
 		//題名の文字数チェック(100字)
 		if (title.length() > 100) {
-			 error += "題名は100文字以内にして下さい。";
+//			 error += "題名は100文字以内にして下さい。";
+			 e.add("題名は100文字以内にして下さい。");
 		}
 		//重要度チェック
 		if (priority.length() > 3 || priority.length() == 0) {
-			 error += "重要度は★～★★★までです。";
+//			 error += "重要度は★～★★★までです。";
+			 e.add("重要度は★～★★★までです。");
 		}
 		if (!priority.equals("★") && (!priority.equals("★★")) && (!priority.equals("★★★"))) {
-			 error += "重要度は★～★★★で表示されます。";
+//			 error += "重要度は★～★★★で表示されます。";
+			 e.add("重要度は★～★★★で表示されます。");
 		}
 
-		//期限書式チェック
-		if (m.find() == false) {
-			error += "期限は「YYYY/MM/DD」形式で入力してください。";
-		}
 		//未入力時はそのまま登録
 		if (deadline.equals("")) {
-			return error += "";
+			return e;
 		}
-		return error;
+		//期限書式チェック
+		if (m.find() == false) {
+//			error += "期限は「YYYY/MM/DD」形式で入力してください。";
+			 e.add("期限は「YYYY/MM/DD」形式で入力してください。");
+		}
+		return  e;
 
 	}
 
