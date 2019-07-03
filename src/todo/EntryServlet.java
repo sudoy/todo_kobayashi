@@ -94,7 +94,7 @@ public class EntryServlet extends HttpServlet {
 			 e.add("重要度は★～★★★で表示されます。");
 		}
 
-		//未入力時はそのまま登録
+		//未入力時はエラー起きない
 		if (deadline.equals("")) {
 			return e;
 		}

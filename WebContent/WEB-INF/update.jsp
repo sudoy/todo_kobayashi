@@ -13,15 +13,15 @@
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">題名</label>
 			<div class="col-sm-10">
-				<input type="email" class="form-control" id="inputEmail3"
-					placeholder="題名" value="テストテスト">
+				<input type="text" class="form-control" name="title" value="${form.title}" id="inputEmail3"
+					placeholder="題名" value="">
 			</div>
 		</div>
 
 		<div class="form-group">
 			<label class="col-sm-2 control-label">詳細</label>
 			<div class="col-sm-10">
-				<textarea class="form-control" rows="2" placeholder="詳細">SQLの確認テストの採点と報告書を作成する。</textarea>
+				<textarea class="form-control" rows="2" name="detail" placeholder="詳細">${form.detail}</textarea>
 			</div>
 		</div>
 
@@ -29,10 +29,10 @@
 			<label for="inputEmail3" class="col-sm-2 control-label">重要度</label>
 			<div class="radio col-sm-10">
 				<div class="radio">
-					<label><input type="radio" name="imporatant" value="★★★"
+					<label><input type="radio" name="priority" value="${form.priority}"
 						checked>★★★</label><br> <label><input type="radio"
-						name="imporatant" value="★★">★★</label><br> <label><input
-						type="radio" name="imporatant" value="★">★</label><br>
+						name="priority" value="${form.priority}">★★</label><br> <label><input
+						type="radio" name="priority" value="${form.priority}">★</label><br>
 				</div>
 				<!--radio-->
 			</div>
@@ -41,8 +41,8 @@
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">期限</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" placeholder="期限"
-					value="2015/06/15">
+				<input type="text" class="form-control" name="deadline" placeholder="期限"
+					value="${form.deadline}">
 			</div>
 		</div>
 

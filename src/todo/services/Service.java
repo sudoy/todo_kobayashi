@@ -8,6 +8,7 @@ import java.util.List;
 
 import todo.forms.EntryForm;
 import todo.forms.IndexForm;
+import todo.forms.UpdateForm;
 import todo.utils.DBUtils;
 import todo.utils.HTMLUtils;
 
@@ -33,9 +34,8 @@ public class Service {
 			//SELECT命令の準備
 			ps = con.prepareStatement(sql);
 
-
 			//SELECT命令の実行
-			rs = ps.executeQuery(sql);
+			rs = ps.executeQuery();
 
 			List<IndexForm> list = new ArrayList<>();
 
@@ -49,13 +49,65 @@ public class Service {
 
 				deadline = HTMLUtils.format(deadline);
 
-
 				IndexForm index = new IndexForm(number, title, priority, deadline);
 				list.add(index);
 			}
 
 			return list;
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+		return null;
+
+	}
+
+	public UpdateForm select2(String number) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "select number, title, detail, priority, deadline "
+					+ "from todo "
+					+ "where number = ? "
+					+ "order by number";
+
+
+			//SELECT命令の準備
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, number);
+
+			//SELECT命令の実行
+			rs = ps.executeQuery();
+
+			UpdateForm list = null;
+
+			//結果セットの内容を出力
+			rs.next();
+
+			String number1 = rs.getString("number");
+			String title = rs.getString("title");
+			String detail = rs.getString("detail");
+			String priority = rs.getString("priority");
+			String deadline = rs.getString("deadline");
+
+			deadline = HTMLUtils.format(deadline);
+
+			UpdateForm update = new UpdateForm(number1,title, detail, priority, deadline);
+
+			list = update;
+
+			return list;
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -73,7 +125,6 @@ public class Service {
 		PreparedStatement ps = null;
 		String sql = null;
 
-
 		try {
 			//データベース接続
 			con = DBUtils.getConnection();
@@ -86,7 +137,7 @@ public class Service {
 
 			String deadline = form.getDeadline();
 
-			if(deadline.equals("")) {
+			if (deadline.equals("")) {
 				deadline = null;
 			}
 
@@ -96,10 +147,8 @@ public class Service {
 			ps.setString(3, form.getPriority());
 			ps.setString(4, deadline);
 
-
 			//INSERT命令の実行
 			ps.executeUpdate();
-
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -108,6 +157,5 @@ public class Service {
 		}
 
 	}
-
 
 }

@@ -19,7 +19,8 @@
 
 		<tr class="">
 			<td>${f.number}</td>
-			<td class="test"><a href="update.html">${f.title}</a></td>
+
+			<td class="test"><a href="update.html?number=${f.number}">${f.title}</a></td>
 			<td>${f.priority}</td>
 			<td>${f.deadline}</td>
 		</tr>
