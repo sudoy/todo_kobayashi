@@ -64,7 +64,7 @@ public class Service {
 
 	}
 
-	public UpdateForm select2(String number) {
+	public UpdateForm select2(String num) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -85,7 +85,7 @@ public class Service {
 			//SELECT命令の準備
 			ps = con.prepareStatement(sql);
 
-			ps.setString(1, number);
+			ps.setString(1, num);
 
 			//SELECT命令の実行
 			rs = ps.executeQuery();
@@ -95,7 +95,7 @@ public class Service {
 			//結果セットの内容を出力
 			rs.next();
 
-			String number1 = rs.getString("number");
+			String number = rs.getString("number");
 			String title = rs.getString("title");
 			String detail = rs.getString("detail");
 			String priority = rs.getString("priority");
@@ -103,7 +103,7 @@ public class Service {
 
 			deadline = HTMLUtils.format(deadline);
 
-			UpdateForm update = new UpdateForm(number1,title, detail, priority, deadline);
+			UpdateForm update = new UpdateForm(number,title, detail, priority, deadline);
 
 			list = update;
 
@@ -141,13 +141,54 @@ public class Service {
 				deadline = null;
 			}
 
-			//INERT命令にポストデータの内容をセット
+			//INSERT命令にポストデータの内容をセット
 			ps.setString(1, form.getDetail());
 			ps.setString(2, form.getTitle());
 			ps.setString(3, form.getPriority());
 			ps.setString(4, deadline);
 
 			//INSERT命令の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, null);
+		}
+
+	}
+
+	//データの更新
+	public void update(UpdateForm form) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "update todo set title=?, detail=?, priority=?, deadline=? where number = ?";
+
+			//UPDATE命令の準備
+			ps = con.prepareStatement(sql);
+
+			String deadline = form.getDeadline();
+
+			if (deadline.equals("")) {
+				deadline = null;
+			}
+
+			//UPDATE命令にポストデータの内容をセット
+			ps.setString(1, form.getTitle());
+			ps.setString(2, form.getDetail());
+			ps.setString(3, form.getPriority());
+			ps.setString(4, deadline);
+			ps.setString(5, form.getNumber());
+
+			//UPDATE命令の実行
 			ps.executeUpdate();
 
 		} catch (Exception e) {
