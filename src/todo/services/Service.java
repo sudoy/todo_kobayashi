@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import todo.forms.DeleteForm;
 import todo.forms.EntryForm;
 import todo.forms.IndexForm;
 import todo.forms.UpdateForm;
@@ -14,8 +15,8 @@ import todo.utils.HTMLUtils;
 
 public class Service {
 
-	//データの取り出し
-	public List<IndexForm> select() {
+	//indexのデータ取得
+	public List<IndexForm> inselect() {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -64,7 +65,8 @@ public class Service {
 
 	}
 
-	public UpdateForm select2(String num) {
+	//Updateのデータ取得
+	public UpdateForm upselect(String num) {
 
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -80,7 +82,6 @@ public class Service {
 					+ "from todo "
 					+ "where number = ? "
 					+ "order by number";
-
 
 			//SELECT命令の準備
 			ps = con.prepareStatement(sql);
@@ -103,7 +104,7 @@ public class Service {
 
 			deadline = HTMLUtils.format(deadline);
 
-			UpdateForm update = new UpdateForm(number,title, detail, priority, deadline);
+			UpdateForm update = new UpdateForm(number, title, detail, priority, deadline);
 
 			list = update;
 
@@ -117,6 +118,7 @@ public class Service {
 		return null;
 
 	}
+
 
 	//入力したデータのインサート
 	public void insert(EntryForm form) {
@@ -189,6 +191,43 @@ public class Service {
 			ps.setString(5, form.getNumber());
 
 			//UPDATE命令の実行
+			ps.executeUpdate();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, null);
+		}
+
+	}
+
+	//データの削除
+	public void delete(DeleteForm form) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "delete from todo where number = ?";
+
+			//DELETE命令の準備
+			ps = con.prepareStatement(sql);
+//
+//			String deadline = form.getDeadline();
+//
+//			if (deadline.equals("")) {
+//				deadline = null;
+//			}
+
+			//DELETE命令にポストデータの内容をセット
+			ps.setString(1, form.getNumber());
+
+			//DELETEE命令の実行
 			ps.executeUpdate();
 
 		} catch (Exception e) {

@@ -19,7 +19,7 @@ public class IndexServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 
 		Service service = new Service();
-		List <IndexForm> form = service.select();
+		List <IndexForm> form = service.inselect();
 
 		req.setAttribute("form", form);
 

@@ -16,7 +16,7 @@
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">題名</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="title" value="${form.title}" id="inputEmail3"
+				<input type="text" class="form-control" name="title" value="${form.title}"
 					placeholder="題名" value="">
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 						<label><input type="radio" name="priority" value="★★"
 						<c:if test="${form.priority.equals('★★')}">checked</c:if>
 						>★★</label><br>
-						<label><input type="radio" name="priority" value="★"
+						<label><input type="radio" name="priority"  value="★"
 						<c:if test="${form.priority.equals('★')}">checked</c:if>
 						>★</label><br>
 				</div>
@@ -49,7 +49,7 @@
 		<div class="form-group">
 			<label for="inputEmail3" class="col-sm-2 control-label">期限</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" name="deadline" placeholder="期限"
+				<input type="text" class="form-control" name="deadline"  placeholder="期限"
 					value="${form.deadline}">
 			</div>
 		</div>
@@ -60,16 +60,14 @@
 				<a href="index.html" class="btn btn-default">キャンセル</a>
 			    <input class="btn btn-info" type="submit" name="button" value="更新">
 
+
 				<div class="col-sm-offset-11 col-sm-5">
-					<a href="index.html" class="btn btn-danger">削 除</a>
+					<a href="delete.html?number=${form.number}" class="btn btn-danger">削除</a>
 				</div>
 			</div>
 		</div>
 
-
-
 	</form>
-
 
 
 <jsp:include page="footer.jsp" />

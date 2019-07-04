@@ -24,7 +24,7 @@ public class UpdateServlet extends HttpServlet {
 
 
 		Service service = new Service();
-		UpdateForm form = service.select2(req.getParameter("number"));
+		UpdateForm form = service.upselect(req.getParameter("number"));
 
 		req.setAttribute("form", form);
 
@@ -60,9 +60,6 @@ public class UpdateServlet extends HttpServlet {
 		//アップデート
 		Service service = new Service();
 		service.update(form);
-
-
-
 
 		resp.sendRedirect("index.html");
 	}
