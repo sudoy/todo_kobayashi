@@ -33,9 +33,7 @@ public class DeleteServlet extends HttpServlet {
 		//エラー時はindex.jspの再表示
 		if (error.size() != 0 ) {
 
-			req.setAttribute("error", error);
-			req.setAttribute("form",form );
-			getServletContext().getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+			resp.sendRedirect("index.html");
 			return;
 		}
 

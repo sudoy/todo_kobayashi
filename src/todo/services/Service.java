@@ -9,6 +9,7 @@ import java.util.List;
 import todo.forms.DeleteForm;
 import todo.forms.EntryForm;
 import todo.forms.IndexForm;
+import todo.forms.LoginForm;
 import todo.forms.UpdateForm;
 import todo.utils.DBUtils;
 import todo.utils.HTMLUtils;
@@ -217,12 +218,6 @@ public class Service {
 
 			//DELETE命令の準備
 			ps = con.prepareStatement(sql);
-//
-//			String deadline = form.getDeadline();
-//
-//			if (deadline.equals("")) {
-//				deadline = null;
-//			}
 
 			//DELETE命令にポストデータの内容をセット
 			ps.setString(1, form.getNumber());
@@ -236,6 +231,52 @@ public class Service {
 			DBUtils.close(con, ps, null);
 		}
 
+	}
+	//データを取得
+	public LoginForm loginselect(LoginForm form) {
+
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		ResultSet rs = null;
+
+		try {
+			//データベース接続
+			con = DBUtils.getConnection();
+
+			//SQL
+			sql = "select number,name from userinfo where email = ? and pass = ?";
+
+			//SELECT命令の準備
+			ps = con.prepareStatement(sql);
+
+			ps.setString(1, form.getEmail());
+			ps.setString(2, form.getPassword());
+
+			//SELECT命令の実行
+			rs = ps.executeQuery();
+
+			LoginForm loginform = null;
+
+			//結果セットの内容を出力
+			rs.next();
+
+				String number = rs.getString("number");
+				String name = rs.getString("name");
+
+				LoginForm login = new LoginForm( number, name);
+
+				login = loginform;
+
+				return login ;
+
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			DBUtils.close(con, ps, rs);
+		}
+		return null;
 	}
 
 }
